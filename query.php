@@ -7,14 +7,13 @@
 	<h1>Connection Test</h1>
 <?php
 require ('../connect.php');
-$q = 'show tables';
-$r = mysqli_query($dbc, $q);
+$q = 'select message from insighcy_site_db.forum';
+$r = $mysqli->query($q);
 echo 'Awaiting reply ...';
 if($r)
-	{echo '<h1>Result set returned ok</h1>';}
+	{echo '<h1>Result set returned ok</h1><br>' . $r->fetch_assoc() ;}
 else
-	{echo '<p>' . mysqli_error($dbc) . '</p>';}
-mysqli_close($dbc);
+	{echo '<p>' . $mysqli->connect_error . '</p>';}
 ?>
 </body>
 </html>
